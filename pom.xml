@@ -25,6 +25,48 @@
     <groupId>org.codepenguin</groupId>
     <artifactId>codepenguin-randomuser-java-pojo</artifactId>
     <version>1.0.0</version>
+    <packaging>jar</packaging>
+
+    <name>codepenguin-randomuser-java-pojo</name>
+    <description>Java library with all the POJO's for RANDOM USER GENERATOR API.</description>
+    <url>https://github.com/codepenguin-org/codepenguin-randomuser-java-pojo</url>
+
+    <licenses>
+        <license>
+            <name>GNU GPLv3</name>
+            <url>https://www.gnu.org/licenses/gpl-3.0.en.html</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Jorge Garcia</name>
+            <email>jorgealfonsogarcia@codepenguin.org</email>
+            <organization>codepenguin.org</organization>
+            <organizationUrl>https://github.com/codepenguin-org</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com:codepenguin-org/codepenguin-randomuser-java-pojo.git</connection>
+        <developerConnection>scm:git:ssh://github.com:codepenguin-org/codepenguin-randomuser-java-pojo.git
+        </developerConnection>
+        <url>https://github.com/codepenguin-org/codepenguin-randomuser-java-pojo</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/codepenguin-org/codepenguin-randomuser-java-pojo</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrhx</id>
+            <name>OSSRHX</name>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -32,4 +74,62 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.4.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.13</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
