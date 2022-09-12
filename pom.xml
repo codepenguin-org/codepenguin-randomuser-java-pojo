@@ -56,11 +56,6 @@
     </scm>
 
     <distributionManagement>
-        <snapshotRepository>
-            <id>github</id>
-            <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/codepenguin-org/codepenguin-randomuser-java-pojo</url>
-        </snapshotRepository>
         <repository>
             <id>ossrhx</id>
             <name>OSSRHX</name>
