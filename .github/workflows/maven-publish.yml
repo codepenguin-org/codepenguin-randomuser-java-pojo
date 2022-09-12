@@ -33,10 +33,10 @@ jobs:
         gpg --list-secret-keys --keyid-format LONG
 
     - name: Build with Maven for publishing to GitHub Packages
-      run: mvn -B package --file pom.xml
+      run: mvn -B package --file pom.xml -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
 
     - name: Publish to GitHub Packages Apache Maven
-      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
+      run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
       env:
         GITHUB_TOKEN: ${{ github.token }}
 
@@ -50,7 +50,7 @@ jobs:
         server-password: MAVEN_PASSWORD
         
     - name: Publish to the Maven Central Repository
-      run: mvn --batch-mode deploy
+      run: mvn --batch-mode deploy -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
       env:
         MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
         MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
